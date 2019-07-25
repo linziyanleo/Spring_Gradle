@@ -11,8 +11,8 @@ public class TestController {
 
     @RequestMapping(value="/", method=RequestMethod.GET)
     public List<User> getUserList() {
-        List<User> r = new ArrayList<User>(users.values());
-        return r;
+        List<User> valueArray = new ArrayList<User>(users.values());
+        return valueArray;
     }
 
     @RequestMapping(value="/", method=RequestMethod.POST)
