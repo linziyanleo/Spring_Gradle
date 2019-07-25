@@ -1,7 +1,10 @@
 package com.example.demo.control;
-  
-import org.springframework.web.bind.annotation.RequestMapping;  
-import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.model.User;
+
+import java.util.*;
+import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequestMapping(value="/model")
@@ -41,4 +44,4 @@ public class TestController {
         return "success";
     }
 
-}}
+}

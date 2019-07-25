@@ -33,7 +33,7 @@ public class User {
         return age;  
     }  
   
-    public void setName(Integer name) {  
+    public void setAge(Integer name) {  
         this.age = age;  
     }  
 }
