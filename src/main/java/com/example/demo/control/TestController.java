@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping(value="/model")
+@RequestMapping(value="/users")
 public class TestController {
 
     static Map<Long, User> users = Collections.synchronizedMap(new HashMap<Long, User>());
