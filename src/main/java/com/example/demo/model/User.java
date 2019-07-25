@@ -4,22 +4,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;  
 import javax.persistence.GenerationType;  
 import javax.persistence.Id;  
-  
-@Entity  
-public class User {  
+
+@Entity
+public class User {
     @Id  
     @GeneratedValue(strategy= GenerationType.AUTO)  
-    int id;  
+    private Long id; 
+    private String name; 
+    private Integer age; 
   
-    public int getId() {  
+    public Long getId() {  
         return id;  
     }  
   
-    public void setId(int id) {  
+    public void setId(Long id) {  
         this.id = id;  
     }  
-  
-    private String name;  
   
     public String getName() {  
         return name;  
@@ -28,4 +28,12 @@ public class User {
     public void setName(String name) {  
         this.name = name;  
     }  
-}  
+
+    public Integer getAge() {  
+        return age;  
+    }  
+  
+    public void setName(Integer name) {  
+        this.age = age;  
+    }  
+}
