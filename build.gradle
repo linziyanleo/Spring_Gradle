@@ -38,7 +38,11 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     runtime('mysql:mysql-connector-java')
     compile('org.springframework.boot:spring-boot-starter-tomcat')
+    compile(
+            'org.springframework.boot:spring-boot-starter-actuator',
+            'org.springframework.boot:spring-boot-devtools',
+            'mysql:mysql-connector-java'
+    )
     testCompile('org.springframework.boot:spring-boot-starter-test')
-//    compile('java.util.*')
-//    compile('org.springframework.web.bind.annotation.*')
+
 }
