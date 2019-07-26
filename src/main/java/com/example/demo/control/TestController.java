@@ -1,47 +1,103 @@
 package com.example.demo.control;
 
 import com.example.demo.model.User;
+import com.example.demo.dao.UserDao;
 
-import java.util.*;
-import org.springframework.web.bind.annotation.*;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController
-@RequestMapping(value="/users")
+@RequestMapping("/users")
 public class TestController {
 
-    static Map<Long, User> users = Collections.synchronizedMap(new HashMap<Long, User>());
+    @Autowired
+    private UserDao userDao;
 
-    @RequestMapping(value="/", method=RequestMethod.GET)
-    public List<User> getUserList() {
-        List<User> valueArray = new ArrayList<User>(users.values());
-        return valueArray;
+    /**
+     * 查询所有用户
+     * 
+     * @param model
+     * @return
+     */
+    @GetMapping
+    public ModelAndView list(Model model) {
+        model.addAttribute("userList", userDao.findAll());
+        model.addAttribute("title", "用户管理");
+        return new ModelAndView("user/list", "userModel", model);
     }
 
-    @RequestMapping(value="/", method=RequestMethod.POST)
-    public String postUser(@ModelAttribute User user) {
-        users.put(user.getId(), user);
-        return "success";
+    /**
+     * 根据id查询用户
+     * 
+     * @param id
+     * @param model
+     * @return
+     */
+    @GetMapping("{id}")
+    public ModelAndView view(@PathVariable("id") Long id, Model model) {
+        User user = userDao.findOne(id);
+        model.addAttribute("user", user);
+        model.addAttribute("title", "查看用户");
+        return new ModelAndView("user/view", "userModel", model);
     }
 
-    @RequestMapping(value="/{id}", method=RequestMethod.GET)
-    public User getUser(@PathVariable Long id) {
-        return users.get(id);
+    /**
+     * 获取创建表单页面
+     * 
+     * @param model
+     * @return
+     */
+    @GetMapping("/form")
+    public ModelAndView createForm(Model model) {
+        model.addAttribute("user", new User());
+        model.addAttribute("title", "创建用户");
+        return new ModelAndView("user/form", "userModel", model);
     }
 
-    @RequestMapping(value="/{id}", method=RequestMethod.PUT)
-    public String putUser(@PathVariable Long id, @ModelAttribute User user) {
-        User u = users.get(id);
-        u.setName(user.getName());
-        u.setAge(user.getAge());
-        users.put(id, u);
-        return "success";
+    /**
+     * 保存或更新用户
+     * 
+     * @param user
+     * @return
+     */
+    @PostMapping
+    public ModelAndView saveOrUpdateUser(User user) {
+        user = userDao.save(user);
+        return new ModelAndView("redirect:/users");
     }
 
-    @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
-    public String deleteUser(@PathVariable Long id) {
-        users.remove(id);
-        return "success";
+    /**
+     * 删除用户
+     * 
+     * @param id
+     * @return
+     */
+    @GetMapping("/delete/{id}")
+    public ModelAndView delete(@PathVariable("id") Long id) {
+        userDao.delete(id);
+        return new ModelAndView("redirect:/users");// 重定向到list页面
     }
+
+    /**
+     * 获取修改用户的界面
+     * 
+     * @param id
+     * @param model
+     * @return
+     */
+    @GetMapping("/modify/{id}")
+    public ModelAndView modify(@PathVariable("id") Long id, Model model) {
+        User user = userDao.findOne(id);
+        model.addAttribute("user", user);
+        model.addAttribute("title", "修改用户");
+        return new ModelAndView("user/form", "userModel", model);
+    }
+
 
 }
