@@ -2,6 +2,9 @@ buildscript {
     ext {
         springBootVersion = '1.5.7.RELEASE'
     }
+    ext['thymeleaf.version'] = '3.0.3.RELEASE'
+    ext['thymeleaf-layout-dialect.version'] = '2.2.0'
+    ext['hibernate.version'] = '5.2.8.Final'
     repositories {
         mavenCentral()
     }
@@ -43,6 +46,7 @@ dependencies {
             'org.springframework.boot:spring-boot-devtools',
             'mysql:mysql-connector-java'
     )
+    runtime('com.h2database:h2:1.4.193')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 
 }
