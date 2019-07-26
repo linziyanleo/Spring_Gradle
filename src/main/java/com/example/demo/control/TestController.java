@@ -52,7 +52,7 @@ public class TestController {
         userDao.delete(id);
         return new ModelAndView("redirect:/users");// 重定向到list页面
     }
-    
+
     @GetMapping("/modify/{id}")
     public ModelAndView modify(@PathVariable("id") Long id, Model model) {
         User user = userDao.findOne(id);
