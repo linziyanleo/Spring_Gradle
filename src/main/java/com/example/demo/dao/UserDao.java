@@ -1,6 +1,6 @@
 package com.example.demo.dao;
 
-import org.springframework.data.repository.CrudRepository;
+
 import com.example.demo.entity.User;
 
 import org.springframework.data.domain.Page;
@@ -21,5 +21,16 @@ public interface UserDao extends JpaRepository<User, Long> {
     List<User> findByIdNot(Long id);
 
     Long countByAge(Integer age);
+
+
+//    public static List<User> findAll() {
+//        List<User> list = null;
+//        try {
+//            list = session.createQuery("from User").list();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return list;
+//    }
 
 }

@@ -19,7 +19,7 @@ public class User {
     private String name; 
     private Integer age; 
   
-/*
+
     public Long getId() {
         return id;
     }
@@ -43,6 +43,6 @@ public class User {
     public void setAge(Integer name) {
         this.age = age;
     }
-*/
+
 
 }
