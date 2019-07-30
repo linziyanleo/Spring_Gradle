@@ -23,14 +23,4 @@ public interface UserDao extends JpaRepository<User, Long> {
     Long countByAge(Integer age);
 
 
-//    public static List<User> findAll() {
-//        List<User> list = null;
-//        try {
-//            list = session.createQuery("from User").list();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return list;
-//    }
-
 }
