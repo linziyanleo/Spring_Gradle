@@ -23,7 +23,7 @@ public class TestController {
         return userDao.findAll();
     }
 
-    @PostMapping(value = "/adduser")
+    @PostMapping(value = "/addUser")
     public User userAdd(@RequestParam("name") String name, @RequestParam("age")  Integer age){
         User user=new User();
         user.setAge(age);
@@ -34,6 +34,12 @@ public class TestController {
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public List<User> delete(Long id) {
         userDao.deleteById(id);
+        return userDao.findAll();
+    }
+
+    @PutMapping("/update")
+    public List<User> userUpdate(User user) {
+        userDao.save(user);
         return userDao.findAll();
     }
 
