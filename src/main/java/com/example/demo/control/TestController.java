@@ -36,10 +36,9 @@ public class TestController {
         return userDao.findAll();
     }
 
-    @PutMapping("/update")
+    @PutMapping(value = "/update")
     public List<User> userUpdate(User user) {
         userDao.save(user);
         return userDao.findAll();
     }
-
 }
